@@ -103,9 +103,9 @@ export function SignIn({
   });
   const isPending = signInMutating + signUpMutating > 0;
 
-  const Captcha = plugins.find(
-    (plugin) => plugin.captchaComponent
-  )?.captchaComponent;
+  // const Captcha = plugins.find(
+  //   (plugin) => plugin.captchaComponent
+  // )?.captchaComponent;
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -322,9 +322,9 @@ export function SignIn({
                   </Field>
                 )}
 
-                {Captcha && (
+                {/* {Captcha && (
                   <div className="flex justify-center">{Captcha}</div>
-                )}
+                )} */}
 
                 <div className="flex flex-col gap-3 pt-2">
                   <Button
@@ -339,14 +339,14 @@ export function SignIn({
                     <LastUsedBadge method="email" floating />
                   </Button>
 
-                  {plugins.flatMap((plugin) =>
+                  {/* {plugins.flatMap((plugin) =>
                     (plugin.authButtons ?? []).map((AuthButton, index) => (
                       <AuthButton
                         key={`${plugin.id}-${index.toString()}`}
                         view="signIn"
                       />
                     ))
-                  )}
+                  )} */}
                 </div>
               </FieldGroup>
             </form>

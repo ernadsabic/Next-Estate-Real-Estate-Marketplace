@@ -102,9 +102,9 @@ export function SignUp({
   })
   const isPending = signInMutating + signUpMutating > 0
 
-  const Captcha = plugins.find(
-    (plugin) => plugin.captchaComponent
-  )?.captchaComponent
+  // const Captcha = plugins.find(
+  //   (plugin) => plugin.captchaComponent
+  // )?.captchaComponent
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
@@ -457,9 +457,9 @@ export function SignUp({
                     )
                 )}
 
-                {Captcha && (
+                {/* {Captcha && (
                   <div className="flex justify-center">{Captcha}</div>
-                )}
+                )} */}
 
                 <div className="flex flex-col gap-3 pt-2">
                   <Button 
@@ -471,14 +471,14 @@ export function SignUp({
                     {localization.auth.signUp}
                   </Button>
 
-                  {plugins.flatMap((plugin) =>
+                  {/* {plugins.flatMap((plugin) =>
                     (plugin.authButtons ?? []).map((AuthButton, index) => (
                       <AuthButton
                         key={`${plugin.id}-${index.toString()}`}
                         view="signUp"
                       />
                     ))
-                  )}
+                  )} */}
                 </div>
               </FieldGroup>
             </form>
