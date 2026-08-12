@@ -1,4 +1,4 @@
-import { PropertyType } from "@/lib/generated/prisma";
+import { PropertyType } from "@prisma/client";
 
 export interface FormData {
   category: string;
