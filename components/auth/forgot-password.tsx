@@ -73,9 +73,6 @@ export function ForgotPassword({ className }: ForgotPasswordProps) {
     })
   }
 
-  const Captcha = plugins.find(
-    (plugin) => plugin.captchaComponent
-  )?.captchaComponent
 
   const [fieldErrors, setFieldErrors] = useState<{
     email?: string
@@ -127,7 +124,7 @@ export function ForgotPassword({ className }: ForgotPasswordProps) {
               <FieldError>{fieldErrors.email}</FieldError>
             </Field>
 
-            {Captcha && <div className="flex justify-center">{Captcha}</div>}
+            
 
             <div className="flex flex-col gap-3">
               <Button type="submit" disabled={isPending}>
