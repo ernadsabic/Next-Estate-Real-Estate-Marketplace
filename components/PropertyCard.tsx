@@ -17,19 +17,17 @@ type Props = {
 };
 
 const PropertyCard = async ({ property }: Props) => {
-
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session || !session.user) return;
 
   const isAuthor = property.userId === session.user.id;
-  
+
   return (
     <div className="relative overflow-hidden aspect-2/3 rounded-xl p-6 group shadow-md hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300">
       <Image
         src={property.imageUrl[0]}
         alt={property.title}
         fill
-        loading="lazy"
         className="object-cover object-center group-hover:scale-110 transition-transform duration-300 ease-in-out"
       />
       <div className="relative z-20 flex flex-col justify-between h-full">
