@@ -60,6 +60,7 @@ const SinglePropertyClient = ({ property }: Props) => {
             <Image
               src={property.imageUrl[0]}
               alt={property.title}
+              loading="lazy"
               fill
               className="object-cover object-center"
             />

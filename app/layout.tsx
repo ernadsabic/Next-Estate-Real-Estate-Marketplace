@@ -3,9 +3,6 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Providers } from "@/components/providers";
-import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
-import AddPropertyForm from "@/components/AddPropertyForm";
 import Footer from "@/components/Footer";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -20,14 +17,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
   return (
     <html lang="en" className={`${montserrat.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Providers>
-          <Navbar session={session} />
+          <Navbar />
           {children}
           <Footer />
         </Providers>

@@ -27,6 +27,7 @@ const PropertyCard = async ({ property }: Props) => {
         src={property.imageUrl[0]}
         alt={property.title}
         fill
+        loading="lazy"
         className="object-cover object-center group-hover:scale-110 transition-transform duration-300 ease-in-out"
       />
       <div className="relative z-20 flex flex-col justify-between h-full">
