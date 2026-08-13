@@ -19,10 +19,10 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <Providers>
           <Navbar />
-          {children}
+          <main className="flex-1">{children}</main>
           <Footer />
         </Providers>
       </body>
