@@ -9,10 +9,10 @@ const HeroSearch = () => {
 
   const handleSearch = () => {
     if (inputValue.trim() === "") {
-      return router.push(`/properties`);
+      return router.push(`/marketplace`);
     }
     const params = new URLSearchParams({ location: inputValue });
-    router.push(`/properties?${params}`);
+    router.push(`/marketplace?${params}`);
   };
   return (
     <div className="border truncate w-full md:w-2/3 lg:w-1/2 text-white border-white/10 bg-slate-900/40 backdrop-blur-md rounded-3xl p-4 flex items-center gap-4">
