@@ -1,8 +1,10 @@
-import { Bath, Bed, MapPin, Ruler } from "lucide-react";
+import { Bath, Bed, MapPin, Ruler, Settings } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { FormData } from "@/Types/formType";
 import { formatPrice } from "@/lib/utils";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import SettingsButton from "./SettingsButton";
 
 type PropertyCardType = FormData & {
@@ -12,12 +14,15 @@ type PropertyCardType = FormData & {
 
 type Props = {
   property: PropertyCardType;
-  currentUserId?: string;
 };
 
-const PropertyCard = ({ property, currentUserId }: Props) => {
+const PropertyCard = async ({ property }: Props) => {
+
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session || !session.user) return;
+
+  const isAuthor = property.userId === session.user.id;
   
-  const isAuthor = currentUserId ? property.userId === currentUserId : false;
   return (
     <div className="relative overflow-hidden aspect-2/3 rounded-xl p-6 group shadow-md hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300">
       <Image
