@@ -26,6 +26,7 @@ const PropertyCard = async ({ property }: Props) => {
       <Image
         src={property.imageUrl[0]}
         alt={property.title}
+        loading="lazy"
         fill
         className="object-cover object-center group-hover:scale-110 transition-transform duration-300 ease-in-out"
       />
