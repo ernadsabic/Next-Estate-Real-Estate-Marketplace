@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section className="min-h-dvh relative overflow-hidden flex items-center">
       <Image
-        src={"/images/hero-bg.webp"}
+        src={"/hero-bg.webp"}
         alt="Hero Image"
         priority
         fill

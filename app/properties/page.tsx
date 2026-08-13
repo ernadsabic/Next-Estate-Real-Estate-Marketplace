@@ -1,13 +1,16 @@
 import PropertyCard from "@/components/PropertyCard";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 import { headers } from "next/headers";
+import { toast } from "sonner";
 
 const MyProperties = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session || !session?.user) {
-    throw new Error("Not authenticated!");
+    toast.error(`You need to be authenticated to visit this page.`);
+    redirect("/auth");
   }
 
   const myProps = await prisma.propertySale.findMany({
