@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { Providers } from "@/components/providers";
 import Footer from "@/components/Footer";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Create Next App",

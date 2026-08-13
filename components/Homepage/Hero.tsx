@@ -3,12 +3,14 @@ import HeroSearch from "../HeroSearch";
 
 const Hero = () => {
   return (
-    <section className="min-h-dvh relative overflow-hidden flex items-center">
+    <section className="min-h-screen relative overflow-hidden flex items-center">
       <Image
         src={"/hero-bg.webp"}
         alt="Hero Image"
         priority
         fill
+        sizes="100vw"
+        quality={80}
         className="object-cover object-center -z-15"
       />
       <div className="container mx-auto py-6 px-4 relative z-10">
