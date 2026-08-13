@@ -17,7 +17,6 @@ type Props = {
 };
 
 const PropertyCard = async ({ property }: Props) => {
-  
   const session = await auth.api.getSession({ headers: await headers() });
 
   const isAuthor = property.userId === session?.user?.id;
@@ -27,8 +26,6 @@ const PropertyCard = async ({ property }: Props) => {
       <Image
         src={property.imageUrl[0]}
         alt={property.title}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
-        quality={85}
         fill
         className="object-cover object-center group-hover:scale-110 transition-transform duration-300 ease-in-out"
       />
@@ -54,11 +51,9 @@ const PropertyCard = async ({ property }: Props) => {
             </p>
             <div className="flex items-center gap-2 text-white mb-6">
               <MapPin className="text-gray-300 h-5 w-5" />
-              <p className="text-sm text-gray-300 line-clamp-1">
-                {property.location}
-              </p>
+              <p className="text-sm text-gray-300">{property.location}</p>
             </div>
-            <h2 className="text-2xl text-white font-bold pb-2 border-b border-white/20 line-clamp-1">
+            <h2 className="text-2xl text-white font-bold pb-2 border-b border-white/20">
               {property.address}
             </h2>
             <div className="mt-4 flex items-center gap-6">
