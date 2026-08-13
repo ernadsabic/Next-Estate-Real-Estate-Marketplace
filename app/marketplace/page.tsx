@@ -1,6 +1,8 @@
 import FilterForm from "@/components/FilterForm";
 import PropertyCard from "@/components/PropertyCard";
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { headers } from "next/headers";
 
 interface SearchParams {
   searchParams: Promise<{
@@ -41,6 +43,9 @@ const Marketplace = async ({ searchParams }: SearchParams) => {
     },
   });
 
+  const session = await auth.api.getSession({ headers: await headers() });
+  const currentUserId = session?.user?.id;
+
   return (
     <section className="min-h-screen pt-16 md:pt-20 bg-[#F8FAFC]">
       <div className="container mx-auto px-4 py-8">
@@ -57,8 +62,8 @@ const Marketplace = async ({ searchParams }: SearchParams) => {
           <FilterForm />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {properties.map((property, key) => (
-            <PropertyCard key={key} property={property} />
+          {properties.map((property) => (
+            <PropertyCard key={property.id} property={property} currentUserId={currentUserId}/>
           ))}
         </div>
       </div>
