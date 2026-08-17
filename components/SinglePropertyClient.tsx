@@ -59,7 +59,7 @@ const SinglePropertyClient = async ({ property }: Props) => {
             "grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4 h-125"
           }`}
         >
-          <div className="relative overflow-hidden w-full h-full aspect-4/3 md:aspect-2/1 lg:aspect-2.5/1 rounded-2xl  shadow-md">
+          <div className="relative overflow-hidden w-full h-full aspect-4/3 md:aspect-2/1 lg:aspect-2.5/1 rounded-2xl shadow-md">
             <Image
               src={property.imageUrl[0]}
               alt={property.title}
@@ -69,10 +69,14 @@ const SinglePropertyClient = async ({ property }: Props) => {
             />
           </div>
           {hasMoreImages && (
-            <div className="grid grid-rows-2 h-full gap-4">
+            <div
+              className={`grid ${
+                property.imageUrl.length === 3 ? "grid-rows-2" : "grid-rows-1"
+              } h-full gap-4`}
+            >
               {property.imageUrl.slice(1, 3).map((img) => (
                 <div
-                  className="relative overflow-hidden w-full  rounded-2xl  shadow-md"
+                  className="relative overflow-hidden w-full rounded-2xl shadow-md"
                   key={img}
                 >
                   <Image
