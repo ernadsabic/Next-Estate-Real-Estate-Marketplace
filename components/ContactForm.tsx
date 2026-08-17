@@ -5,12 +5,16 @@ import Image from "next/image";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 type Props = {
   user: Pick<User, "id" | "name" | "email" | "image">;
+  session: Session | null;
 };
 
-const ContactForm = ({ user }: Props) => {
+type Session = typeof authClient.$Infer.Session;
+
+const ContactForm = ({ user, session }: Props) => {
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -30,7 +34,10 @@ const ContactForm = ({ user }: Props) => {
 
   const handleSendEmail = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-
+    if (!session || !session.user) {
+      toast.error("You need to be authenticated first!");
+      return;
+    }
     try {
       setIsLoading(true);
       await emailjs.send(
@@ -109,8 +116,9 @@ const ContactForm = ({ user }: Props) => {
           className="resize-none border placeholder:text-gray-400 border-gray-200 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500"
         ></textarea>
         <button
+          disabled={isLoading}
           type="submit"
-          className="inline-flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl text-white font-semibold cursor-pointer transition-colors duration-200"
+          className="inline-flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl text-white font-semibold cursor-pointer transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? (
             <>

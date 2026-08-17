@@ -3,13 +3,16 @@ import { Bath, Bed, MapPin, Ruler } from "lucide-react";
 import Image from "next/image";
 import ContactForm from "./ContactForm";
 import { formatPrice } from "@/lib/utils";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 type Props = {
   property: PropertyType;
 };
 
-const SinglePropertyClient = ({ property }: Props) => {
+const SinglePropertyClient = async ({ property }: Props) => {
   const hasMoreImages = property.imageUrl.length > 1;
+  const session = await auth.api.getSession({ headers: await headers() });
   return (
     <section className="min-h-screen pt-16 md:pt-20 bg-[#F8FAFC]">
       <div className="container mx-auto px-4 py-8">
@@ -90,7 +93,7 @@ const SinglePropertyClient = ({ property }: Props) => {
               {property.description}
             </p>
           </div>
-          <ContactForm user={property.user} />
+          <ContactForm user={property.user} session={session} />
         </div>
       </div>
     </section>
